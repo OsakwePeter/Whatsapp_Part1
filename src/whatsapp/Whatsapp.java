@@ -14,6 +14,9 @@ private static String Phonenumber;
 private static String registeredUsername;
 private static String registeredPassword;
 private static boolean loginsuccessfully = false;
+
+
+//Method that checks if the username is met
 public static boolean checkUserName(String Username){
     if(Username.contains("_") && Username.length() <= 5){
         return true;
@@ -23,8 +26,8 @@ public static boolean checkUserName(String Username){
 }
 }
 
+//Method that checks if password conditions are met
 public static boolean checkPasswordComplexity(String Password){
-    Scanner password = new Scanner(System.in);
     boolean hasSpecialCharacter = Password.matches(".*[A-Z].*");
     boolean hasNumber = Password.matches(".*\\d.*");
     boolean hasUpperCase = Password.matches(".*[^a-zA-Z0-9].*");
@@ -37,6 +40,8 @@ public static boolean checkPasswordComplexity(String Password){
     }
 
 }
+
+//Method that checks if the number condition are met
 public static boolean checkCellPhoneNumber(String Phonenumber){
     boolean hasnumber = Phonenumber.matches("^\\+\\d{2,7}\\d{9}$");
     if(hasnumber){
@@ -46,7 +51,7 @@ public static boolean checkCellPhoneNumber(String Phonenumber){
         return false;
     }
 }
-//This storees the userinput    
+//This storees the username and password   
 public static String registerUser(String Username, String Password, String Phonenumber){
      if (!Username.matches("^[a-zA-Z0-9_]{5,15}$")) {
             return "Username is not correctly formatted, please ensure that your username contains an underscore and is no more than five characters in length.";
@@ -62,6 +67,7 @@ public static String registerUser(String Username, String Password, String Phone
         return "User registered succesfully.";
 }
 
+//This checks if the details put in by the client is correct. 
 public static boolean loginUser(String Username, String Password){
     if(Username.equals(registeredUsername) && Password.equals(registeredPassword)){
         loginsuccessfully = true;
@@ -73,6 +79,7 @@ public static boolean loginUser(String Username, String Password){
     }
 }
 
+//This method welcomes the user if logs are correct or inform the user if its incorrect.
 public static String returnLoginStatus(){
 if(loginsuccessfully){
             return "Welcome " + Firstname +""+ Lastname + ", it is great to see you again.";
@@ -122,8 +129,9 @@ public static void main(String[] args) {
     else{
         System.out.println("Cell phone number incorrectly formatted or does not contain international code.");
     }
-        System.out.println(registerUser(Username, Password, Phonenumber));
+       
     }
+     System.out.println(registerUser(Username, Password, Phonenumber));
 
         boolean loggedin = false;
 
